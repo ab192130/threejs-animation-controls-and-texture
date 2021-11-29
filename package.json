@@ -2,7 +2,7 @@
   "name": "proj-05",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "index.js",
   "dependencies": {
     "three": "^0.135.0"
   },
