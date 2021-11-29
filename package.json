@@ -12,8 +12,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack watch --mode=development --config webpack.config.js",
-    "production": "webpack --config webpack.config.js"
+    "dev": "webpack watch --mode=development --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "UNLICENSED"
