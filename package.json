@@ -16,5 +16,5 @@
     "production": "webpack --config webpack.config.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "UNLICENSED"
 }
