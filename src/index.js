@@ -1,10 +1,20 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
+import {Howl, Howler} from 'howler';
 
 let scene;
 let camera;
 let renderer;
+
+function playMusic() {
+    new Howl({
+        src: ['../bg.wav'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5
+    });
+}
 
 function init() {
     // DOM
@@ -221,4 +231,5 @@ function init() {
     animate();
 }
 
-init()
+playMusic();
+init();

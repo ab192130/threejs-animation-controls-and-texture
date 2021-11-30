@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "howler": "^2.2.3",
     "three": "^0.135.0"
   },
   "devDependencies": {
