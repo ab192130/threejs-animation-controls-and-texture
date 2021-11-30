@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 
 let scene;
 let camera;
@@ -191,7 +191,7 @@ function init() {
     }
 
     function createToy() {
-        loader.load('models/toy/scene.gltf', function (gltf) {
+        loader.load('models/toy2/scene.gltf', function (gltf) {
             gltf.scene.traverse(function (node) {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -201,13 +201,13 @@ function init() {
 
             let mesh = gltf.scene;
             mesh.position.x = -3;
-            mesh.position.y = 0.86;
+            mesh.position.y = 1.5;
             mesh.position.z = 5;
             mesh.rotation.y = 10.8;
             mesh.rotation.z = -10;
-            mesh.scale.x = 0.15;
-            mesh.scale.y = 0.15;
-            mesh.scale.z = 0.15;
+            mesh.scale.x = 0.0002;
+            mesh.scale.y = 0.0002;
+            mesh.scale.z = 0.0002;
             scene.add(mesh);
         }, undefined, function (error) {
             console.error(error);
