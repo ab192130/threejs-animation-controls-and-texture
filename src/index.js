@@ -9,7 +9,7 @@ let renderer;
 
 function playMusic() {
     new Howl({
-        src: ['../bg.wav'],
+        src: ['../sfx/bg.wav'],
         autoplay: true,
         loop: true,
         volume: 0.5
