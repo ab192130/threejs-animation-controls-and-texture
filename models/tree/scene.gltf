@@ -1,0 +1,434 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 7163,
+      "max": [
+        8.625232696533203,
+        18.156970977783203,
+        5.492614269256592
+      ],
+      "min": [
+        -6.442110538482666,
+        -3.4382152557373047,
+        -9.559564590454102
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 85956,
+      "componentType": 5126,
+      "count": 7163,
+      "max": [
+        0.9994217157363892,
+        0.9998717904090881,
+        0.9993494153022766
+      ],
+      "min": [
+        -0.9996567368507385,
+        -0.9999277591705322,
+        -0.9999656081199646
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 7163,
+      "max": [
+        0.9980469346046448,
+        0.6656588315963745
+      ],
+      "min": [
+        0.0019531199941411614,
+        0.0019531199941411614
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 57304,
+      "componentType": 5126,
+      "count": 7163,
+      "max": [
+        0.9980469346046448,
+        0.6656588315963745
+      ],
+      "min": [
+        0.0019531199941411614,
+        0.0019531199941411614
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 40152,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 171912,
+      "componentType": 5126,
+      "count": 4607,
+      "max": [
+        13.235912322998047,
+        26.987838745117188,
+        6.677926540374756
+      ],
+      "min": [
+        -14.074113845825195,
+        5.404381275177002,
+        -17.731361389160156
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 227196,
+      "componentType": 5126,
+      "count": 4607,
+      "max": [
+        0.9998130798339844,
+        0.9990432262420654,
+        0.999517560005188
+      ],
+      "min": [
+        -0.9999263882637024,
+        -0.9991939067840576,
+        -0.9995763301849365
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 114608,
+      "componentType": 5126,
+      "count": 4607,
+      "max": [
+        0.998046875,
+        0.9416397213935852
+      ],
+      "min": [
+        0.0019531187135726213,
+        0.0019531185971572995
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 160608,
+      "componentType": 5125,
+      "count": 27354,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "ahingel (https://sketchfab.com/ahingel)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/stylized-toon-tree-c97cc0cc657c43a89c7332e3c28ac8aa",
+      "title": "Stylized Toon Tree"
+    },
+    "generator": "Sketchfab-11.64.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 270024,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 151464,
+      "byteOffset": 270024,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 282480,
+      "byteOffset": 421488,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 703968,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_unlit"
+  ],
+  "images": [
+    {
+      "uri": "textures/PM3D_Sphere3D_1_baseColor.png"
+    },
+    {
+      "uri": "textures/PM3D_Sphere3D_2_baseColor.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "PM3D_Sphere3D_1",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "PM3D_Sphere3D_2",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "PM3D_Sphere3D_1_PM3D_Sphere3D_1_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2,
+            "TEXCOORD_1": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "PM3D_Sphere3D_2_PM3D_Sphere3D_2_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TEXCOORD_0": 7
+          },
+          "indices": 8,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.24391916394233704,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.416093439122017e-17,
+        -0.24391916394233704,
+        0.0,
+        0.0,
+        0.24391916394233704,
+        5.416093439122017e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "0147605233d444589b838c9af9b923fe.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        7
+      ],
+      "matrix": [
+        0.3937009871006012,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.16010548487902285,
+        -0.3596758275942947,
+        0.0,
+        0.0,
+        0.3596758275942947,
+        0.16010548487902285,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "_Object_Pivot_Node_"
+    },
+    {
+      "children": [
+        5
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.4437902902310354e-06,
+        0.9999979734390916,
+        0.0,
+        0.0,
+        -0.9999979734390916,
+        2.4437902902310354e-06,
+        0.0,
+        0.0,
+        3.8146961287566228e-06,
+        -1.9073484054388246e-06,
+        1.0
+      ],
+      "name": "PM3D_Sphere3D_1"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9999999999999996,
+        -2.980233476668203e-08,
+        0.0,
+        0.0,
+        2.980233476668203e-08,
+        0.9999999999999996,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "PM3D_Sphere3D_1"
+    },
+    {
+      "mesh": 0,
+      "name": "PM3D_Sphere3D_1_PM3D_Sphere3D_1_0"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.4437902902310354e-06,
+        0.9999979734390916,
+        0.0,
+        0.0,
+        -0.9999979734390916,
+        2.4437902902310354e-06,
+        0.0,
+        0.0,
+        3.8146961287566228e-06,
+        -1.9073484054388246e-06,
+        1.0
+      ],
+      "name": "PM3D_Sphere3D_2"
+    },
+    {
+      "children": [
+        9
+      ],
+      "name": "PM3D_Sphere3D_2"
+    },
+    {
+      "mesh": 1,
+      "name": "PM3D_Sphere3D_2_PM3D_Sphere3D_2_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    }
+  ]
+}

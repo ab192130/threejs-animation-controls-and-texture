@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 
 let scene;
 let camera;
@@ -12,13 +12,13 @@ function init() {
 
     // Scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color("#BED0E5");
+    scene.background = new THREE.Color("#91c0f6");
 
     // Camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
-    camera.position.x = 2;
+    camera.position.x = -10;
     camera.position.y = 3;
+    camera.position.z = 10;
 
     // Render
     renderer = new THREE.WebGLRenderer({antialias: true});
@@ -31,10 +31,11 @@ function init() {
     controls.update();
     controls.enableDamping = true;
     controls.minDistance = 10;
+    controls.maxDistance = 50;
 
     // Light
-    const ambient = new THREE.AmbientLight("#FFFFFF", .2);
-    ambient.position.set(0, 300, 500);
+    const ambient = new THREE.AmbientLight("#FFFFFF", 0.7);
+    ambient.position.set(0, 0, 0);
     scene.add(ambient);
 
     let dirLight = new THREE.DirectionalLight("#ffffff", 1);
@@ -43,6 +44,10 @@ function init() {
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
+    dirLight.shadow.camera.left = -10;
+    dirLight.shadow.camera.right = 10;
+    dirLight.shadow.camera.top = 10;
+    dirLight.shadow.camera.bottom = -10;
 
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -54,13 +59,17 @@ function init() {
     // Floor
     function createFloor() {
         let pos = {x: 0, y: 0, z: 0}
-        let scale = {x: 100, y: 1, z: 100}
+        let scale = {x: 500, y: 1, z: 500}
 
         const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('models/floor/textures/soil.jpg');
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(80, 80);
 
         let floorPlane = new THREE.BoxGeometry(1, 1, 1);
-        let floorMaterial = new THREE.MeshBasicMaterial({
-            map: textureLoader.load('models/floor/textures/carpet.jpg')
+        let floorMaterial = new THREE.MeshPhongMaterial({
+            map: texture
         });
         //let floorMaterial = new THREE.MeshPhongMaterial({color: "#f9c834"});
         let floorMesh = new THREE.Mesh(floorPlane, floorMaterial);
@@ -78,48 +87,134 @@ function init() {
     // Model
     let model;
     let mixer;
+    let isMoving = false;
     const clock = new THREE.Clock();
     const loader = new GLTFLoader();
-    loader.load('models/cat/scene.gltf', function (gltf) {
-        model = gltf.scene;
-        model.position.y += 0.5;
-        model.scale.x = 0.01;
-        model.scale.y = 0.01;
-        model.scale.z = 0.01;
-        model.castShadow = true;
-        model.receiveShadow = true;
-        camera.lookAt(model.position);
-        mixer = new THREE.AnimationMixer(model);
-        mixer.clipAction(gltf.animations[0]).play();
-        window.addEventListener('keypress', (e) => {
-            switch (e.code) {
-                case 'KeyW':
-                    model.position.z += 0.1;
-                    break;
-                case 'KeyA':
-                    model.rotation.y += 0.1;
-                    break;
-                case 'KeyS':
-                    model.position.z -= 0.1;
-                    break;
-                case 'KeyD':
-                    model.rotation.y -= 0.1;
-                    break;
-                default:
-                    break;
-            }
-        })
-        scene.add(gltf.scene);
-    }, undefined, function (error) {
-        console.error(error);
-    });
+
+    function createCatModel() {
+        loader.load('models/cat/scene.gltf', function (gltf) {
+            gltf.scene.traverse(function (node) {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    //node.receiveShadow = true;
+                }
+            });
+
+            model = gltf.scene;
+            model.position.x = -5;
+            model.position.y = 0.5;
+            model.scale.x = 0.01;
+            model.scale.y = 0.01;
+            model.scale.z = 0.01;
+            camera.lookAt(model.position);
+            mixer = new THREE.AnimationMixer(model);
+            mixer.clipAction(gltf.animations[0]).play();
+            window.addEventListener('keypress', (e) => {
+                switch (e.code) {
+                    case 'KeyW':
+                        model.translateZ(0.05);
+                        isMoving = true;
+                        break;
+                    case 'KeyA':
+                        model.rotateY(0.05);
+                        isMoving = true;
+                        break;
+                    case 'KeyS':
+                        model.translateZ(-0.05);
+                        isMoving = true;
+                        break;
+                    case 'KeyD':
+                        model.rotateY(-0.05);
+                        isMoving = true;
+                        break;
+                    default:
+                        isMoving = false;
+                        break;
+                }
+            })
+            scene.add(gltf.scene);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+    }
+
+    function createTree() {
+        loader.load('models/tree/scene.gltf', function (gltf) {
+            gltf.scene.traverse(function (node) {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    //node.receiveShadow = true;
+                }
+            });
+
+            let tree = gltf.scene;
+            tree.position.x = -10;
+            tree.position.y = 1.5;
+            tree.scale.x = 10;
+            tree.scale.y = 10;
+            tree.scale.z = 10;
+            scene.add(tree);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+    }
+
+    function createGrass() {
+        loader.load('models/grass/scene.gltf', function (gltf) {
+            gltf.scene.traverse(function (node) {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    //node.receiveShadow = true;
+                }
+            });
+
+            let mesh = gltf.scene;
+            mesh.position.x = -10;
+            mesh.position.y = 0.5;
+            mesh.scale.x = 0.05;
+            mesh.scale.y = 0.05;
+            mesh.scale.z = 0.05;
+            scene.add(mesh);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+    }
+
+    function createToy() {
+        loader.load('models/toy/scene.gltf', function (gltf) {
+            gltf.scene.traverse(function (node) {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    //node.receiveShadow = true;
+                }
+            });
+
+            let mesh = gltf.scene;
+            mesh.position.x = -3;
+            mesh.position.y = 0.86;
+            mesh.position.z = 5;
+            mesh.rotation.y = 10.8;
+            mesh.rotation.z = -10;
+            mesh.scale.x = 0.15;
+            mesh.scale.y = 0.15;
+            mesh.scale.z = 0.15;
+            scene.add(mesh);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+    }
 
     createFloor();
+    createTree();
+    createGrass();
+    createToy();
+    createCatModel();
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update();
-        if (mixer) mixer.update(clock.getDelta());
+        if (mixer && isMoving) mixer.update(clock.getDelta());
+        isMoving = false;
         renderer.render(scene, camera);
     }
 
