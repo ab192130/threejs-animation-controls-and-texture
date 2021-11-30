@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import TWEEN from '@tweenjs/tween.js'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import {Howl} from 'howler';
@@ -52,12 +53,12 @@ function init() {
     dirLight.position.set(-30, 50, 30);
     scene.add(dirLight);
     dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 2048;
-    dirLight.shadow.mapSize.height = 2048;
-    dirLight.shadow.camera.left = -10;
-    dirLight.shadow.camera.right = 10;
-    dirLight.shadow.camera.top = 10;
-    dirLight.shadow.camera.bottom = -10;
+    dirLight.shadow.mapSize.width = 7000;
+    dirLight.shadow.mapSize.height = 7000;
+    dirLight.shadow.camera.left = -70;
+    dirLight.shadow.camera.right = 70;
+    dirLight.shadow.camera.top = 70;
+    dirLight.shadow.camera.bottom = -70;
 
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -101,6 +102,10 @@ function init() {
     const clock = new THREE.Clock();
     const loader = new GLTFLoader();
 
+    let c = {z: 0};
+    let target = {z: 0.05};
+    const tween = new TWEEN.Tween(c).to(target, 500).easing(TWEEN.Easing.Elastic.InOut);
+
     function createCatModel() {
         loader.load('models/cat/scene.gltf', function (gltf) {
             gltf.scene.traverse(function (node) {
@@ -122,20 +127,39 @@ function init() {
             window.addEventListener('keypress', (e) => {
                 switch (e.code) {
                     case 'KeyW':
-                        model.translateZ(0.05);
-                        isMoving = true;
+                        tween.onUpdate(function(){
+                            model.translateZ(0.03);
+                            isMoving = true;
+                        });
+
+                        tween.start();
+
                         break;
                     case 'KeyA':
-                        model.rotateY(0.05);
-                        isMoving = true;
+                        tween.onUpdate(function(){
+                            model.rotateY(0.01);
+                            isMoving = true;
+                        });
+
+                        tween.start();
+
                         break;
                     case 'KeyS':
-                        model.translateZ(-0.05);
-                        isMoving = true;
+                        tween.onUpdate(function(){
+                            model.translateZ(-0.03);
+                            isMoving = true;
+                        });
+
+                        tween.start();
                         break;
                     case 'KeyD':
-                        model.rotateY(-0.05);
-                        isMoving = true;
+                        tween.onUpdate(function(){
+                            model.rotateY(-0.01);
+                            isMoving = true;
+                        });
+
+                        tween.start();
+
                         break;
                     default:
                         isMoving = false;
@@ -195,7 +219,6 @@ function init() {
             gltf.scene.traverse(function (node) {
                 if (node.isMesh) {
                     node.castShadow = true;
-                    //node.receiveShadow = true;
                 }
             });
 
@@ -225,6 +248,7 @@ function init() {
         controls.update();
         if (mixer && isMoving) mixer.update(clock.getDelta());
         isMoving = false;
+        tween.update();
         renderer.render(scene, camera);
     }
 
